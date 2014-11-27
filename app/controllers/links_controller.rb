@@ -1,5 +1,5 @@
 class LinksController <  ApplicationController
-  respond_to :js
+  respond_to :js, :html
  
   def new
     @link = Link.new
@@ -11,7 +11,8 @@ class LinksController <  ApplicationController
     if @link.save
       respond_with @link   
     else 
-      respond_with @link
+      respond_with { }
+      format.html { redirect_to '/', :error => "Could not save link" }
     end
   end
 

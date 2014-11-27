@@ -1,2 +1,3 @@
 $('#link_real_link').val('');
 $('#bitly_link').html('<%= j render :partial => 'show_link' %>')
+$('#bitly_link').prepend('<%= escape_javascript(render("shared/error_messages", :formats => [:html])) %>');

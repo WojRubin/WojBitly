@@ -2,6 +2,7 @@ class Converter
   def initialize
     @alfabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split(//) 
   end
+
   def to_bitly_link(id)
     return @alfabet[0] if id == 0
     bitly_link = ''

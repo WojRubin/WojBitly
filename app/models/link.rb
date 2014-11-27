@@ -1,7 +1,8 @@
 class Link < ActiveRecord::Base
   attr_accessor :bitly_link
 
-  validates :real_link, presence: true
+  validates :real_link, :presence => true, :url => true
+
   after_save :create_bitly_link
 
   def self.find_real_link(bitly_link)
