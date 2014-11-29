@@ -1,3 +1,12 @@
+$('#errors').html("")
+$('#bitly_link').html("")
+<% if @link.errors.any? %>
+  <% @link.errors.full_messages.each do |message| %>
+    $("#errors").append("<div class='alert alert-danger'><%= message.html_safe %></div>");
+  <% end %>
+<% else %>
+  $('#bitly_link').html('<%= j render :partial => 'show_link' %>');
+<% end %>
 $('#link_real_link').val('');
-$('#bitly_link').html('<%= j render :partial => 'show_link' %>')
-$('#bitly_link').prepend('<%= escape_javascript(render("shared/error_messages", :formats => [:html])) %>');
+
+

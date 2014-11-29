@@ -1,0 +1,22 @@
+@import "bootstrap";
+
+.container{
+  width: 100%;
+  min-height: 100%;
+  margin: 0 auto;
+}
+#form{
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 20%
+}
+#bitly_link{
+  font-size: 25px;
+  margin-top: 25px;
+  text-align: center;
+}
+#errors{
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
