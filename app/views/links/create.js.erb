@@ -1,8 +1,10 @@
 $('#errors').html("")
 $('#bitly_link').html("")
 <% if @link.errors.any? %>
-  <% @link.errors.full_messages.each do |message| %>
-    $("#errors").append("<div class='alert alert-danger'><button class='close' aria-hidden='true' data-dismiss='alert' type='button'>x</button><div id='flash_error'><%= message.html_safe %></div></div>");
+  <% @link.errors.messages.values.each do |msg| %>
+    <%msg.each do  |message| %>
+      $("#errors").append("<div class='alert alert-danger'><button class='close' aria-hidden='true' data-dismiss='alert' type='button'>x</button><div id='flash_error'><%= message.html_safe %></div></div>");
+    <% end %>
   <% end %>
 <% else %>
   $('#bitly_link').html('<%= j render :partial => 'show_link' %>');
