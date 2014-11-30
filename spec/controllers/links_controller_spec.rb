@@ -38,13 +38,32 @@ describe LinksController, :type => :controller do
   end
 
   describe "GET #redirect" do
-    before do
-      @link = create(:link)
-      get :redirect, :bitly_link => Converter.new.to_bitly_link(@link.id)
+    context "with valid bitly link" do
+      before do
+        @link = create(:link)
+        get :redirect, :bitly_link => Converter.new.to_bitly_link(@link.id)
+      end
+
+      it "redirect to real URL" do
+        expect(response).to redirect_to(@link.real_link)
+      end
     end
 
-    it "redirect ro real link" do
-      expect(response).to redirect_to(@link.real_link)
+    context "with invalid bitly link" do
+      it "redirect to new with longlink" do
+        get :redirect, :bitly_link => 'invalidlonglinkwith'
+        expect(response).to redirect_to(:action => :new)
+      end
+
+      it "redirect to new with no alfanumerous link" do
+        get :redirect, :bitly_link => '_'
+        expect(response).to redirect_to(:action => :new)
+      end
+
+      it "redirect to new with invalid link" do
+        get :redirect, :bitly_link => 'GG'
+        expect(response).to redirect_to(:action => :new)
+      end
     end
   end
 end

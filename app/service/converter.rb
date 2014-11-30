@@ -17,7 +17,11 @@ class Converter
   def find_id_real_link(link)
     id = 0
     base = @alfabet.length
-    link.each_char { |c| id = id * base + @alfabet.index(c) }
+    link.each_char do |c| 
+      return nil unless @alfabet.include? c
+      id = id * base + @alfabet.index(c) 
+    end
+    return nil if id > 2000000000
     id
   end
 end
