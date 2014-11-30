@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :link do
-    real_link "onet.pl"
+    real_link "http://onet.pl"
   end
 end

@@ -9,5 +9,6 @@ RSpec.describe Link do
 
   describe "validations" do 
     it { should validate_presence_of(:real_link) }
+    it { should validate_url_of(:real_link) }
   end
 end
