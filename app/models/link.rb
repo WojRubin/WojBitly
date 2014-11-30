@@ -1,8 +1,7 @@
 class Link < ActiveRecord::Base
   attr_accessor :bitly_link
 
-  validates :real_link, :url => {:message => "Bad URL format"}
-  validates_presence_of :real_link, :message => "Can't be empty"
+  validates :real_link, :presence => {:message => "Empty URL input"}, :url => {:message => "Bad URL format"}
 
   after_save :create_bitly_link
 
@@ -11,6 +10,7 @@ class Link < ActiveRecord::Base
     return obj.real_link
 
   end
+  
 private
 
   def create_bitly_link
